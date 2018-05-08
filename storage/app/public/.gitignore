@@ -1,0 +1,6 @@
+*
+!.gitignore
+!act-pict-tmp/
+!act-pict-tmp/.gitkeep
+!topimage-tmp/
+!topimage-tmp/.gitkeep
