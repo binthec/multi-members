@@ -14,10 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-//	    $topimages = Topimage::open()->get();
-//	    $activities = Activity::open()->take(4)->get();
-//	    $events = Event::getAllEvents();
-//		return view('frontend.home', compact('topimages', 'activities', 'events'));
+        
         return view('frontend.home.index');
     }
 
