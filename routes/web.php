@@ -9,6 +9,8 @@ Route::domain(env('FRONTEND_DOMAIN'))->group(function () {
     Route::middleware('guest:user')->group(function () {
         Route::get('/', 'Frontend\HomeController@index')->name('home');
         Route::get('/about', 'Frontend\HomeController@about')->name('about');
+        Route::get('/novels', 'Frontend\HomeController@novels')->name('novels');
+        Route::post('/novels', 'Frontend\HomeController@searchNovels')->name('search');
     });
 
     Route::middleware('auth:user')->group(function () {

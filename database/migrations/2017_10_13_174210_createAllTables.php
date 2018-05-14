@@ -42,6 +42,23 @@ class CreateAllTables extends Migration
             $table->softDeletes();
         });
 
+        Schema::create('groups', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->tinyInteger('status');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('tags', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('group_id');
+            $table->string('name');
+            $table->tinyInteger('status');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         Schema::create('action_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
@@ -102,6 +119,8 @@ class CreateAllTables extends Migration
         Schema::dropIfExists('admins');
         Schema::dropIfExists('pictures');
         Schema::dropIfExists('novels');
+        Schema::dropIfExists('groups');
+        Schema::dropIfExists('tags');
         Schema::dropIfExists('action_logs');
     }
 }

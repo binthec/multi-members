@@ -21,7 +21,7 @@
     padding-top: 4em !important;
 }
 @media screen and (max-width: 992px) {
-    .col-md-6{
+    .col-md-6 {
         padding-top: 15px;
     }
 }
@@ -37,11 +37,72 @@
 .gtco-searchbox .btn {
     padding: 10px 20px;
 }
-/*.gtco-searchbox input[type=text] {*/
-/*width: 50%;*/
-/*}*/
 /**
- * サイト
+ * カテゴリ
+ */
+.gtco-tags .col-md-12,
+.gtco-searchbox .col-md-12 {
+    border: 1px solid #17B794;
+    padding: 0;
+}
+.gtco-tags h3.title,
+.gtco-searchbox h3.title {
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 0;
+    opacity: .8;
+    background: #3dcdbc;
+    background: -moz-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, #3dcdbc), color-stop(100%, #33a1bd));
+    background: -webkit-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -o-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -ms-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: linear-gradient(to right, #3dcdbc 0%, #33a1bd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
+}
+.gtco-tags h3 i,
+.gtco-searchbox h3 i {
+    /*color: #17B794;*/
+    color: #fff;
+    font-size: 24px !important;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.gtco-searchbox .search-form,
+.gtco-tags .tags {
+    padding: 15px;
+}
+/**
+ * キーワードで検索
+ */
+.gtco-searchbox .search-form .form-group{
+    /*text-align: center;*/
+    margin-bottom: 0;
+}
+.gtco-searchbox .search-form .form-inline input[type=text]{
+    width: 50%;
+    margin-right: 20px;
+}
+.gtco-searchbox .search-form .form-inline input.btn{
+    height: 54px;
+}
+/**
+ * タグで検索
+ */
+.gtco-tags .tags .tag {
+    display: inline-block;
+    padding: 0 10px 0;
+}
+.gtco-tags .tags .panel-group {
+    margin-bottom: 0;
+}
+.gtco-tags .tags .panel-group .panel-heading {
+    background-color: #f3f3f3;
+}
+/**
+ *
+ * 検索結果　サイト
+ *
  */
 .gtco-sites .site {
     border: 1px solid #17B794;

@@ -15,3 +15,7 @@ yarn-error.log
 !/public/files/topimage/.gitkeep
 /public/files/activity/*
 !/public/files/activity/.gitkeep
+
+# Seeder
+/database/seeds/GroupsTableSeeder.php
+/database/seeds/TagsTableSeeder.php

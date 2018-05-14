@@ -47,78 +47,57 @@
     <div class="gtco-section gtco-searchbox">
         <div class="gtco-container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    {!! Form::open(['method' => 'POST']) !!}
-                    <div class="form-group form-inline">
-                        {!! Form::text('keyword', '', ['class' => 'form-control col-md-6']) !!}
-                        {!! Form::submit('検索', ['class' => 'btn btn-succsess']) !!}
-                    </div>
+                <div class="col-md-12">
+                    <h3 class="title"><i class="ti-pie-chart"></i> キーワードで探す</h3>
 
-                    {!! Form::close() !!}
+                    <div class="search-form">
+                        {!! Form::open(['method' => 'POST', 'route' => 'search']) !!}
+                        <div class="form-group form-inline">
+                            {!! Form::text('keyword', '', ['class' => 'form-control col-md-6']) !!}
+                            {!! Form::submit('検索', ['class' => 'btn btn-succsess']) !!}
+                        </div>
+
+                        {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>
     </div><!-- END .gtco-searchbox -->
 
-    <div class="gtco-section gtco-sites">
+    <div class="gtco-section gtco-tags">
         <div class="gtco-container">
             <div class="row">
-                <div class="col-md-12 pickup">
-                    <div class="wrap">
-                        <h3><i class="ti-pie-chart"></i> PickUP!!</h3>
-                        <p>
-                            PickUP。PickUP。PickUP。
-                        </p>
+
+                <div class="col-md-12">
+                    <h3 class="title"><i class="ti-pie-chart"></i> 分類から探す</h3>
+
+                    <div class="tags">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                            @foreach($groups as $group)
+                                <div class="panel panel-default">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$group->id}}" aria-expanded="true" aria-controls="collapse{{$group->id}}">
+                                        <div class="panel-heading" role="tab" id="heading{{$group->id}}">
+                                            <h4 class="panel-title">{{ $group->name }}</h4>
+                                        </div>
+                                    </a>
+                                    <div id="collapse{{$group->id}}" class="panel-collapse collapse{{ ($group->id === 1)? ' in' : '' }}" role="tabpanel" aria-labelledby="heading{{$group->id}}">
+                                        <div class="panel-body">
+                                            @foreach($group->tags()->checked()->get() as $tag)
+                                                <a href="#" class="tag">{{ $tag->name }}</a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
                     </div>
                 </div>
-                <div class="clearfix visible-md-block visible-sm-block"></div>
-
-
-                <a href="#" class="">
-                    <div class="col-md-6">
-                        <div class="site">
-                            <div class="banner">
-                                <img src="{{ asset('/frontend/banners/02.gif') }}" class="img-responsive">
-                            </div>
-                            <div class="text">
-                                <h3 class="title">SITE NAME</h3>
-                                <p class="description">説明テキスト。説明テキスト。説明テキスト。説明テキスト。</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="">
-                    <div class="col-md-6">
-                        <div class="site">
-                            <div class="banner">
-                                <img src="{{ asset('/frontend/banners/02.gif') }}" class="img-responsive">
-                            </div>
-                            <div class="text">
-                                <h3 class="title">SITE NAME</h3>
-                                <p class="description">説明テキスト。説明テキスト。説明テキスト。説明テキスト。</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
 
             </div>
         </div>
     </div><!-- END .gtco-sites -->
-
-
-
-
-    <div class="gtco-section gtco-gray">
-        <div class="gtco-container">
-            <div class="row">
-                <div class="col-md-12">
-                    ページネータ
-                </div>
-            </div>
-        </div>
-    </div>
 
 @endsection
 
