@@ -217,6 +217,7 @@
     height: 42px;
     padding: 10px 15px;
     font-size: 16px;
+    background-color: #fff;
 }
 #mypage textarea.form-control {
     height: auto !important;
@@ -247,3 +248,7 @@
     color: #ccc;
 }
 
+#mypage .well{
+    background-color: #f9f9f9;
+    border: none;
+}
