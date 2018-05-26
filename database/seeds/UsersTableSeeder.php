@@ -15,19 +15,19 @@ class UsersTableSeeder extends Seeder
 		DB::table('users')->truncate();
 		DB::table('users')->insert([
 			[
-				'name' => 'user1',
+				'name' => 'kabosu',
 				'password' => bcrypt('aaaaaaaa'),
 				'created_at' => \Carbon\Carbon::now(),
 				'updated_at' => \Carbon\Carbon::now(),
 			],
             [
-                'name' => 'user2',
+                'name' => 'shitake',
                 'password' => bcrypt('aaaaaaaa'),
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'name' => 'user3',
+                'name' => 'onsen',
                 'password' => bcrypt('aaaaaaaa'),
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),

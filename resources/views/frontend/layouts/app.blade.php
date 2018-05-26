@@ -61,14 +61,22 @@
                     <ul>
                         <li><a href="{{ route('about') }}">このサーチについて</a></li>
                         <li><a href="">検索</a></li>
-                        <li class="has-dropdown">
-                            <a href="{{ route('user.mypage') }}">マイページ</a>
-                            <ul class="dropdown">
-                                <li><a href="#">お気に入り</a></li>
-                                <li><a href="#">設定</a></li>
-                                <li><a href="#">ログアウト</a></li>
-                            </ul>
-                        </li>
+
+                        @if(Auth::guard('user')->check())
+                            <li class="has-dropdown">
+                                <a href="{{ route('user.mypage') }}">マイページ</a>
+                                <ul class="dropdown">
+                                    <li><a href="#">お気に入り</a></li>
+                                    <li><a href="#">設定</a></li>
+                                    <li><a href="#"onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
+                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </ul>
+                            </li>
+                        @else
+                            <li><a href="{{ route('user.showLogin') }}">ログイン</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -86,7 +94,11 @@
                     <ul class="gtco-list-link">
                         <li><a href="#">このサーチについて</a></li>
                         <li><a href="#">検索</a></li>
-                        <li><a href="#">マイページ</a></li>
+                        @if(Auth::guard('user')->check())
+                            <a href="{{ route('user.mypage') }}">マイページ</a>
+                        @else
+                            <li><a href="{{ route('user.showLogin') }}">ログイン</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

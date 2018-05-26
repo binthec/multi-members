@@ -55,7 +55,7 @@ class Group extends Model
 
         //キャッシュされていない場合には、一旦キャッシュする
         return Cache::remember('groups', self::EXPIRES_IN, function () {
-            return Group::checked()->get();
+            return Group::checked()->with('tags')->get();
         });
 
     }

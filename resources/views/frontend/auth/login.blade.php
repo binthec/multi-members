@@ -1,93 +1,102 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ config('app.name') }} | Log in</title>
+@extends('frontend.layouts.app')
 
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+@section('bodyId', 'home')
 
-    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/vendor/AdminLTE/css/AdminLTE.css">
-    <link rel="stylesheet" href="/vendor/iCheck/all.css">
+@section('content')
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        <b>{{ config('app.name') }}</b>Admin
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">ログインしてください</p>
-
-        {!! Form::open(['method' => 'POST', 'url' => route('login')]) !!}
-        {{ csrf_field() }}
-
-        <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
-            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="ユーザ名" required autofocus>
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            @if ($errors->has('name'))
-                <span class="help-block">
-				  <strong>{{ $errors->first('name') }}</strong>
-				</span>
-            @endif
-        </div>
-
-        <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-            <input type="password" class="form-control" name="password" id="password" placeholder="パスワード" required>
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            @if ($errors->has('password'))
-                <span class="help-block">
-				  <strong>{{ $errors->first('password') }}</strong>
-				</span>
-            @endif
-        </div>
-
-        <div class="row">
-            <div class="col-xs-8">
-                <div class="checkbox icheck">
-                    <label>
-                        <input class="checkbox" id="remember" name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
-                        ログイン状態を維持する
-                    </label>
+    <header id="gtco-header" class="gtco-cover gtco-cover-custom gtco-inner" role="banner">
+        <div class="gtco-container">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-0 text-left">
+                    <div class="display-t">
+                        <div class="display-tc">
+                            <div class="row">
+                                <div class="col-md-8 animate-box">
+                                    <h1 class="no-margin">Login</h1>
+                                    <p>ログイン、または新規登録してください</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div><!-- /.col -->
-
-            <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">ログイン</button>
             </div>
-        </div><!-- /.row -->
+        </div>
+    </header><!-- END #gtco-header -->
 
-        {!! Form::close() !!}
+    <div class="gtco-section gtco-login">
+        <div class="gtco-container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <h3 class="title"><i class="ti-user"></i>ログイン</h3>
 
-        {{--<a href="#">パスワードを忘れました</a><br>--}}
+                    {!! Form::open(['method' => 'POST', 'route' => 'user.login']) !!}
+                    {{ csrf_field() }}
 
-    </div><!-- /.login-box-body -->
-</div><!-- /.login-box -->
+                    <div class="form-group">
+                        <label for="name">名前</label>
+                        {!! Form::text('name', old('name'),['class' => 'form-control']) !!}
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="name">パスワード</label>
+                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+				            </span>
+                        @endif
+                    </div>
 
-<script src="/vendor/jquery/jquery.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/vendor/iCheck/icheck.js"></script>
+                    <div class="form-group">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input class="checkbox" id="remember" name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
+                                ログイン状態を維持する
+                            </label>
+                        </div>
+                    </div>
 
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
-        });
-    });
-</script>
-</body>
-</html>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block btn-flat" value="ログイン">
+                    </div>
+
+                    <div class="form-group">
+                        <a href="#">※パスワード思い出せない</a>
+                    </div>
+
+                    {!! Form::close() !!}
+                </div>
+
+                <div class="col-md-5 col-md-offset-1">
+                    <h3 class="title"><i class="ti-user"></i>新規作成</h3>
+
+                    <form action="#">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Email</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn btn-special" value="Send Message">
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div><!-- END .gtco-section -->
+@endsection
+
+@section('css')
+@endsection
+
+@section('js')
+@endsection

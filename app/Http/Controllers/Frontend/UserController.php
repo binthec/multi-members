@@ -161,7 +161,7 @@ class UserController extends Controller
      */
     public function myPage()
     {
-        return view('backend.user.mypage', ['user' => Auth::user()]);
+        return view('frontend.user.mypage', ['user' => Auth::user()]);
     }
 
 

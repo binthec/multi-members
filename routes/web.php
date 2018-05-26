@@ -7,14 +7,29 @@
  */
 Route::domain(env('FRONTEND_DOMAIN'))->group(function () {
     Route::middleware('guest:user')->group(function () {
+
+        //認証系
+        Route::get('login', 'Frontend\Auth\LoginController@showLoginForm')->name('user.showLogin');
+        Route::post('login', 'Frontend\Auth\LoginController@login')->name('user.login');
+
+        //ホーム
         Route::get('/', 'Frontend\HomeController@index')->name('home');
         Route::get('/about', 'Frontend\HomeController@about')->name('about');
-        Route::get('/novels', 'Frontend\HomeController@novels')->name('novels');
+
+        /**
+         * 検索部分
+         */
+        Route::get('/novels/{tag}', 'Frontend\HomeController@novels')->name('novels');
         Route::post('/novels', 'Frontend\HomeController@searchNovels')->name('search');
     });
 
     Route::middleware('auth:user')->group(function () {
         Route::get('mypage', 'Frontend\UserController@myPage')->name('user.mypage');
+        Route::get('mypage/novel/create', 'Frontend\NovelController@create')->name('user.novel.create');
+        Route::post('mypage/novel', 'Frontend\NovelController@store')->name('user.novel.store');
+
+        //ログアウト
+        Route::post('logout', 'Frontend\Auth\LoginController@logout')->name('user.logout');
     });
 });
 

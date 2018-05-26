@@ -18,6 +18,16 @@ class Tag extends Model
     }
 
     /**
+     * リレーション。タグは小説をたくさん持つ。多対多。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function novels()
+    {
+        return $this->belongsToMany(Novel::class);
+    }
+
+    /**
      * ローカルスコープ。確認済グループのみ取得する
      *
      * @param $query

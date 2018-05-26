@@ -29,4 +29,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * リレーション。ユーザは小説をたくさん持ってる。１対多。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function novels()
+    {
+        return $this->hasMany(Novel::class);
+    }
 }

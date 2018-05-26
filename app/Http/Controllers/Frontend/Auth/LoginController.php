@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,7 @@ use AuthenticatesUsers;
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/';
+	protected $redirectTo = '/mypage';
 
 
     /**
@@ -50,13 +51,13 @@ use AuthenticatesUsers;
 	}
 
     /**
-     * 管理者のガードを設定
+     * ユーザのガードを設定
      *
      * @return mixed
      */
     protected function guard()
     {
-        return Auth::guard('admin');
+        return Auth::guard('user');
     }
 
     /**

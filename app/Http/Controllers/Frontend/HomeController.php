@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Group;
+use App\Novel;
+use App\Tag;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -21,13 +23,16 @@ class HomeController extends Controller
     }
 
     /**
-     * 単なる一覧画面
+     * タグ別表示
      *
+     * @param Tag $tag
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function novels()
+    public function novels(Tag $tag)
     {
-        return view('frontend.home.novels');
+        $novels = Novel::checked()->paginate(Novel::NUM);
+
+        return view('frontend.home.novels', compact('novels'));
     }
 
     /**

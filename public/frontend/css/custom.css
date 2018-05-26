@@ -31,22 +31,7 @@
 .gtco-section {
     padding: 2em 0;
 }
-/**
- * 検索フォーム
- */
-.gtco-searchbox .btn {
-    padding: 10px 20px;
-}
-/**
- * カテゴリ
- */
-.gtco-tags .col-md-12,
-.gtco-searchbox .col-md-12 {
-    border: 1px solid #17B794;
-    padding: 0;
-}
-.gtco-tags h3.title,
-.gtco-searchbox h3.title {
+.title {
     height: 40px;
     line-height: 40px;
     margin-bottom: 0;
@@ -60,13 +45,25 @@
     background: linear-gradient(to right, #3dcdbc 0%, #33a1bd 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
 }
-.gtco-tags h3 i,
-.gtco-searchbox h3 i {
+.title i {
     /*color: #17B794;*/
     color: #fff;
     font-size: 24px !important;
     font-weight: bold;
-    margin-left: 5px;
+    margin: 0 10px;
+}
+/**
+ * 検索フォーム
+ */
+.gtco-searchbox .btn {
+    padding: 10px 20px;
+}
+/**
+ * カテゴリ
+ */
+.gtco-section .with-title {
+    border: 1px solid #17B794;
+    padding: 0;
 }
 .gtco-searchbox .search-form,
 .gtco-tags .tags {
@@ -75,15 +72,15 @@
 /**
  * キーワードで検索
  */
-.gtco-searchbox .search-form .form-group{
+.gtco-searchbox .search-form .form-group {
     /*text-align: center;*/
     margin-bottom: 0;
 }
-.gtco-searchbox .search-form .form-inline input[type=text]{
+.gtco-searchbox .search-form .form-inline input[type=text] {
     width: 50%;
     margin-right: 20px;
 }
-.gtco-searchbox .search-form .form-inline input.btn{
+.gtco-searchbox .search-form .form-inline input.btn {
     height: 54px;
 }
 /**
@@ -98,33 +95,6 @@
 }
 .gtco-tags .tags .panel-group .panel-heading {
     background-color: #f3f3f3;
-}
-/**
- *
- * 検索結果　サイト
- *
- */
-.gtco-sites .site {
-    border: 1px solid #17B794;
-}
-.gtco-sites .site .banner {
-    padding: 15px;
-}
-.gtco-sites .site h3.title {
-    opacity: .8;
-    background: #3dcdbc;
-    background: -moz-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, #3dcdbc), color-stop(100%, #33a1bd));
-    background: -webkit-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
-    background: -o-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
-    background: -ms-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
-    background: linear-gradient(to right, #3dcdbc 0%, #33a1bd 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
-    padding-left: 15px;
-    margin-bottom: 0;
-}
-.gtco-sites .site p.description {
-    padding: 15px;
 }
 /**
  * PickUP
@@ -168,4 +138,107 @@
     top: -0.1em;
     color: #17B794;
     font-size: 22px !important;
+}
+/**
+ *
+ * 検索結果　サイト
+ *
+ */
+.gtco-sites .site {
+    border: 1px solid #17B794;
+}
+.gtco-sites .site .banner {
+    padding: 15px;
+}
+.gtco-sites .site .banner a.first-novel {
+    /*height: 40px;*/
+    line-height: 20px;
+    border: 1px solid #17B794;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    opacity: .8;
+    background: #3dcdbc;
+    background: -moz-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, #3dcdbc), color-stop(100%, #33a1bd));
+    background: -webkit-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -o-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -ms-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: linear-gradient(to right, #3dcdbc 0%, #33a1bd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
+}
+.gtco-sites .site .banner .first-novel i {
+    font-size: 12px;
+    font-weight: bold;
+}
+.gtco-sites .site p.title {
+    color: #000;
+    padding-left: 15px;
+}
+.gtco-sites .site p.description {
+    padding: 15px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1.4em;
+}
+/**
+ * ログイン画面
+ */
+.gtco-login .col-md-5 {
+    border: 1px solid #17B794;
+    padding: 0;
+}
+.gtco-login .col-md-5 form {
+    padding: 15px;
+}
+/**
+ *
+ * マイページ
+ *
+ */
+#mypage .list-group-item.active,
+#mypage .list-group-item.active:hover,
+#mypage .list-group-item.active:focus {
+    opacity: .8;
+    background: #3dcdbc;
+    background: -moz-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, #3dcdbc), color-stop(100%, #33a1bd));
+    background: -webkit-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -o-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: -ms-linear-gradient(left, #3dcdbc 0%, #33a1bd 100%);
+    background: linear-gradient(to right, #3dcdbc 0%, #33a1bd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
+    border-color: #3dcdbc;
+}
+/* フォーム */
+#mypage .form-control {
+    height: 42px;
+    padding: 10px 15px;
+}
+#mypage textarea.form-control {
+    height: auto !important;
+}
+#mypage form label {
+    height: 42px;
+    line-height: 42px;
+    text-align: right;
+    font-size: 16px;
+}
+#mypage form label span {
+    font-size: 30px;
+}
+@media screen and (min-width: 768px) {
+    #mypage .form-horizontal .control-label {
+        padding-top: 0;
+    }
+}
+
+#mypage form .btn{
+    padding: 10px 20px;
+}
+
+#mypage .form-control::placeholder{
+    color: #ccc;
 }

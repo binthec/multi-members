@@ -20,8 +20,8 @@
                 </div>
             </div>
         </div>
-    </header>
-    <!-- END #gtco-header -->
+    </header><!-- END #gtco-header -->
+
     <div class="gtco-section">
         <div class="gtco-container">
             <div class="row">
@@ -47,7 +47,18 @@
     <div class="gtco-section gtco-searchbox">
         <div class="gtco-container">
             <div class="row">
-                <div class="col-md-12">
+
+                <div class="col-md-12 pickup">
+                    <div class="wrap">
+                        <h3><i class="ti-pie-chart"></i> PickUP!!</h3>
+                        <p>
+                            PickUP。PickUP。PickUP。
+                        </p>
+                    </div>
+                </div>
+                <div class="clearfix visible-md-block visible-sm-block"></div>
+
+                <div class="col-md-12 with-title">
                     <h3 class="title"><i class="ti-pie-chart"></i> キーワードで探す</h3>
 
                     <div class="search-form">
@@ -68,7 +79,7 @@
         <div class="gtco-container">
             <div class="row">
 
-                <div class="col-md-12">
+                <div class="col-md-12 with-title">
                     <h3 class="title"><i class="ti-pie-chart"></i> 分類から探す</h3>
 
                     <div class="tags">
@@ -84,7 +95,7 @@
                                     <div id="collapse{{$group->id}}" class="panel-collapse collapse{{ ($group->id === 1)? ' in' : '' }}" role="tabpanel" aria-labelledby="heading{{$group->id}}">
                                         <div class="panel-body">
                                             @foreach($group->tags()->checked()->get() as $tag)
-                                                <a href="#" class="tag">{{ $tag->name }}</a>
+                                                <a href="{{ route('novels', [$tag]) }}" class="tag">{{ $tag->name }}</a>
                                             @endforeach
                                         </div>
                                     </div>

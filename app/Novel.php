@@ -23,18 +23,28 @@ class Novel extends Model
     /**
      * １ページに表示する数
      */
-    const ACT_NUM_LIST = 20;
-    const ACT_NUM_DETAIL = 5;
+    const NUM = 20;
 
     /**
      * ステータス
      */
-    const OPEN = 1;
-    const CLOSE = 99;
+    const CHECKED = 1;
+    const DENIED = 99;
 
     static $statusList = [
-        self::OPEN => '公　開',
-        self::CLOSE => '非公開',
+        self::CHECKED => 'チェック済',
+        self::DENIED => '拒否済',
+    ];
+
+    /**
+     * バナーをアップロードしてあるかどうか
+     */
+    const DONT_HAVE_BANNER = 0;
+    const HAS_BANNER = 1;
+
+    static $bannerFlag = [
+        self::DONT_HAVE_BANNER => 'バナーなし',
+        self::HAS_BANNER => 'バナーあり',
     ];
 
 
@@ -99,9 +109,9 @@ class Novel extends Model
         parent::boot();
 
         //グローバルスコープ追加。活動の様子は基本的に開催日の新しい順に並べる
-        static::addGlobalScope('date', function (Builder $builder) {
-            $builder->orderBy('date', 'desc');
-        });
+//        static::addGlobalScope('created_at', function (Builder $builder) {
+//            $builder->orderBy('created_at', 'desc');
+//        });
     }
 
     /**
@@ -125,14 +135,34 @@ class Novel extends Model
     }
 
     /**
+     * リレーション。小説はユーザに所属する。１対多。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * リレーション。小説はタグをたくさん持つ。多対多。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    /**
      * 公開ステータスのものだけ取得する場合のローカルスコープ
      *
      * @param $query
      * @return mixed
      */
-    public function scopeOpen($query)
+    public function scopeChecked($query)
     {
-        return $query->where('status', self::OPEN);
+        return $query->where('status', self::CHECKED);
     }
 
     /**
@@ -228,7 +258,8 @@ class Novel extends Model
      *
      * @return mixed
      */
-    public function getActList(){
+    public function getActList()
+    {
 
         return self::where('id', '!=', $this->id)
             ->open()

@@ -33,10 +33,11 @@ class CreateAllTables extends Migration
 
         Schema::create('novels', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->string('title');
-            $table->string('date');
-            $table->string('place');
-            $table->text('detail')->nullable();
+            $table->string('description');
+            $table->tinyInteger('has_banner')->default(0);
+            $table->longText('story')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
             $table->softDeletes();
@@ -57,6 +58,12 @@ class CreateAllTables extends Migration
             $table->tinyInteger('status');
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::create('novel_tag', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('novel_id');
+            $table->integer('tag_id');
         });
 
         Schema::create('action_logs', function (Blueprint $table) {
@@ -121,6 +128,7 @@ class CreateAllTables extends Migration
         Schema::dropIfExists('novels');
         Schema::dropIfExists('groups');
         Schema::dropIfExists('tags');
+        Schema::dropIfExists('novel_tag');
         Schema::dropIfExists('action_logs');
     }
 }
