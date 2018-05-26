@@ -16,3 +16,14 @@
         </div>
     </div>
 </header><!-- END #gtco-header -->
+
+<div class="gtco-section gtco-gray">
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-12">
+                {{ Auth::guard('user')->user()->name }} さん
+            </div>
+        </div>
+    </div>
+</div>
+

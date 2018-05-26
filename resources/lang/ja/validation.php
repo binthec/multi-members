@@ -108,5 +108,7 @@ return [
         'place' => '開催場所',
         'pictures' => '画像',
         'status' => '公開ステータス',
+        'title' => 'タイトル',
+        'description' => '作品の説明',
 	],
 ];

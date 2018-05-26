@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Picture;
@@ -175,14 +176,14 @@ class Novel extends Model
     {
         $rules = [
             'title' => 'required',
-            'date' => 'required',
-            'place' => 'required',
+            'description' => 'required',
+//            'story' => '',
             'status' => 'required',
         ];
 
-        if ($storeFlg === true) {
-            $rules = array_merge($rules, ['pictures' => 'required']);
-        }
+//        if ($storeFlg === true) {
+//            $rules = array_merge($rules, ['pictures' => 'required']);
+//        }
 
         return $rules;
 
@@ -196,45 +197,46 @@ class Novel extends Model
     public function saveAll(Request $request)
     {
 
+        $this->user_id = Auth::guard('user')->user()->id;
         $this->title = ($request->title !== null) ? $request->title : null;
-        $this->date = getStdDate($request->date); //必須項目
-        $this->place = $request->place; //必須項目
-        $this->detail = ($request->detail !== null) ? $request->detail : null;
+        $this->description = $request->description; //必須項目
+//        $this->has_banner = ($request->description !== null) ? $request->detail : null;
+        $this->story = ($request->story !== null) ? $request->story : null;
         $this->status = $request->status; //必須項目
         $this->save();
 
         //画像が設定されている場合は保存処理
-        if (!empty($request->pictures)) {
-
-            $uploadDir = $this->uploadDir . $this->id . '/'; //最終的な保存先
-
-            //picturesテーブルから紐付いているものは一旦全削除
-            $this->pictures()->delete();
-
-            //それぞれの画像に対して処理
-            foreach ($request->pictures as $key => $pict) {
-
-                $this->pictures()->create(['name' => $pict, 'order' => $key + 1]);
-
-                if (!File::exists($uploadDir)) { //保存先ディレクトリが無い場合は作成
-                    File::makeDirectory($uploadDir);
-                }
-
-                //保存先に画像が無ければ（＝新しい画像の場合）、一時ディレクトリから移動
-                //保存先に画像がある時（＝既に登録されている画像の場合）は何もしない
-                if (!File::exists($uploadDir . $pict)) {
-                    File::move($this->tmpDir . $pict, $uploadDir . $pict);
-
-                    /**
-                     * リサイズ処理
-                     */
-                    $image = Image::make($uploadDir . $pict);
-                    $image->fit(270, 180)->save($uploadDir . self::$pictPrefix . $pict);
-                }
-
-            }
-
-        }
+//        if (!empty($request->pictures)) {
+//
+//            $uploadDir = $this->uploadDir . $this->id . '/'; //最終的な保存先
+//
+//            //picturesテーブルから紐付いているものは一旦全削除
+//            $this->pictures()->delete();
+//
+//            //それぞれの画像に対して処理
+//            foreach ($request->pictures as $key => $pict) {
+//
+//                $this->pictures()->create(['name' => $pict, 'order' => $key + 1]);
+//
+//                if (!File::exists($uploadDir)) { //保存先ディレクトリが無い場合は作成
+//                    File::makeDirectory($uploadDir);
+//                }
+//
+//                //保存先に画像が無ければ（＝新しい画像の場合）、一時ディレクトリから移動
+//                //保存先に画像がある時（＝既に登録されている画像の場合）は何もしない
+//                if (!File::exists($uploadDir . $pict)) {
+//                    File::move($this->tmpDir . $pict, $uploadDir . $pict);
+//
+//                    /**
+//                     * リサイズ処理
+//                     */
+//                    $image = Image::make($uploadDir . $pict);
+//                    $image->fit(270, 180)->save($uploadDir . self::$pictPrefix . $pict);
+//                }
+//
+//            }
+//
+//        }
     }
 
     /**

@@ -8,14 +8,24 @@
 
     @include('frontend.layouts.parts.gtco-header')
 
-    <div class="gtco-section list-menu">
+    <div class="gtco-section gtco-sites">
         <div class="gtco-container">
             <div class="row">
 
                 @include('frontend.layouts.parts.list-menu')
 
                 <div class="col-md-9">
-                    <p>現在、登録済みの作品はありません。</p>
+
+                    @if($novels->count() > 0)
+                        <div class="paginator">{{ $novels->links() }}</div>
+
+                        @include('frontend.layouts.parts.novels', ['novels' => $novels])
+
+                        <div class="paginator">{{ $novels->links() }}</div>
+
+                    @else
+                        <p>作品はまだありません。</p>
+                    @endif
                 </div><!-- /.col-md-9 -->
             </div>
         </div>

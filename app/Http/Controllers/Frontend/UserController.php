@@ -8,9 +8,9 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
 use Validator;
 use App\User;
+use App\Novel;
 
 class UserController extends Controller
 {
@@ -161,7 +161,10 @@ class UserController extends Controller
      */
     public function myPage()
     {
-        return view('frontend.user.mypage', ['user' => Auth::user()]);
+        $user = Auth::user();
+        $novels = Novel::where('user_id', $user->id)->paginate(self::PAGINATION);
+
+        return view('frontend.user.mypage', compact('user', 'novels'));
     }
 
 

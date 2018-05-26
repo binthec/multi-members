@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Novel;
 use Illuminate\Http\Request;
+use Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class NovelController extends Controller
 {
@@ -29,8 +32,32 @@ class NovelController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
+        $validator = Validator::make($request->all(), Novel::getValidationRules(true));
 
-        return redirect('mypage');
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        DB::beginTransaction();
+
+        try {
+
+            $novel = new Novel;
+            $novel->saveAll($request);
+
+            DB::commit();
+            return redirect('/mypage')->with('flashMsg', '登録が完了しました。');
+
+        } catch (\Exception $e) {
+
+            Log::error($e->getMessage());
+            DB::rollback();
+            return redirect()->back()->with('flashErrMsg', '登録に失敗しました。');
+
+        }
     }
 }

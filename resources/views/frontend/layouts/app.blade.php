@@ -67,14 +67,16 @@
                             <li class="has-dropdown">
                                 <a href="{{ route('user.mypage') }}">マイページ</a>
                                 <ul class="dropdown">
-                                    <li><a href="#">お気に入り</a></li>
-                                    <li><a href="#">設定</a></li>
-                                    <li><a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
-                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
+                                    <li><a href="{{ route('user.mypage') }}">作品一覧</a></li>
+                                    <li><a href="{{ route('user.novel.create') }}">新規登録</a></li>
+                                    <li><a href="">サイト情報</a></li>
+                                    <li><a href="">設定</a></li>
                                 </ul>
                             </li>
+                            <li><a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
+                            <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         @else
                             <li><a href="{{ route('user.showLogin') }}">ログイン</a></li>
                         @endif
