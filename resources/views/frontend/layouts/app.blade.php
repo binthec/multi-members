@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
 
-    <title> {{ config('app.name') }}</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content=""/>
@@ -68,7 +69,7 @@
                                 <ul class="dropdown">
                                     <li><a href="#">お気に入り</a></li>
                                     <li><a href="#">設定</a></li>
-                                    <li><a href="#"onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
+                                    <li><a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
                                     <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
@@ -127,6 +128,7 @@
     <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 </div>
 
+<script src="{{ asset('js/app.js') }}"></script><!-- vue.js -->
 <script src="{{ asset('/frontend/js/jquery.min.js') }}"></script>
 <script src="{{ asset('/frontend/js/jquery.easing.1.3.js') }}"></script>
 <script src="{{ asset('/frontend/js/bootstrap.min.js') }}"></script>
@@ -137,6 +139,7 @@
 <script src="{{ asset('/frontend/js/main.js') }}"></script>
 
 {{--<script src="/vendor/moment/moment.js"></script>--}}
+
 
 @yield('js')
 
