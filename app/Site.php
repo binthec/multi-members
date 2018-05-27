@@ -32,6 +32,16 @@ class Site extends Model
     ];
 
     /**
+     * リレーション。サイトはユーザに所属する。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * バリデーションルールを返すメソッド
      *
      * @return array

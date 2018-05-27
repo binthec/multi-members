@@ -27,7 +27,7 @@ use AuthenticatesUsers;
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/mypage';
+	protected $redirectTo = '/mypage/site/edit';
 
 
     /**

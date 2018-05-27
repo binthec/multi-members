@@ -131,7 +131,7 @@
                     </div><!-- /.well -->
 
                     <div class="form-group text-right">
-                        {!! Form::submit('登録する', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('登　録', ['class' => 'btn btn-primary']) !!}
                     </div>
 
                     {!! Form::close() !!}

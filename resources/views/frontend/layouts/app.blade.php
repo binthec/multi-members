@@ -65,12 +65,14 @@
 
                         @if(Auth::guard('user')->check())
                             <li class="has-dropdown">
-                                <a href="{{ route('user.mypage') }}">マイページ</a>
+                                <a>マイページ</a>
                                 <ul class="dropdown">
-                                    <li><a href="{{ route('user.mypage') }}">作品一覧</a></li>
-                                    <li><a href="{{ route('user.novel.create') }}">新規登録</a></li>
-                                    <li><a href="">サイト情報</a></li>
-                                    <li><a href="">設定</a></li>
+                                    <li><a href="{{ route('user.site.edit') }}">サイト情報</a></li>
+                                    @if(Auth::guard('user')->user()->hasSite())
+                                        <li><a href="{{ route('user.novel') }}">作品一覧</a></li>
+                                        <li><a href="{{ route('user.novel.create') }}">新規登録</a></li>
+                                    @endif
+                                    <li><a href="{{ route('user.edit') }}">設定</a></li>
                                 </ul>
                             </li>
                             <li><a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
@@ -98,7 +100,7 @@
                         <li><a href="#">このサーチについて</a></li>
                         <li><a href="#">検索</a></li>
                         @if(Auth::guard('user')->check())
-                            <a href="{{ route('user.mypage') }}">マイページ</a>
+                            <a href="{{ route('user.site.edit') }}">マイページ</a>
                         @else
                             <li><a href="{{ route('user.showLogin') }}">ログイン</a></li>
                         @endif

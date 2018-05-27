@@ -16,7 +16,14 @@
 
                 <div class="col-md-9">
 
-                    <h4>サイト情報を入力してください。</h4>
+                    <h4>
+                        サイト情報を入力してください。
+                        @if(!Auth::guard('user')->user()->hasSite())
+                            <br>
+                            <small><i class="icon-warning"></i> サイト情報を登録すると、作品を登録出来るようになります。</small>
+                        @endif
+                    </h4>
+
 
                     {!! Form::open(['method' => 'PUT', 'route' => ['user.site.update', $site], 'files'=> true, 'class' => 'form-horizontal', 'id' => 'novel-form']) !!}
 
@@ -115,7 +122,7 @@
                     </div><!-- /.well -->
 
                     <div class="form-group text-right">
-                        {!! Form::submit('登録する', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('更　新', ['class' => 'btn btn-primary']) !!}
                     </div>
 
                     {!! Form::close() !!}

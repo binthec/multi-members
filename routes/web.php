@@ -24,11 +24,19 @@ Route::domain(env('FRONTEND_DOMAIN'))->group(function () {
     });
 
     Route::middleware('auth:user')->group(function () {
-        Route::get('mypage', 'Frontend\UserController@myPage')->name('user.mypage');
+        //サイト情報
         Route::get('mypage/site/edit', 'Frontend\SiteController@edit')->name('user.site.edit');
         Route::put('mypage/site', 'Frontend\SiteController@update')->name('user.site.update');
+
+        //作品
+        Route::get('mypage/novel', 'Frontend\NovelController@index')->name('user.novel');
         Route::get('mypage/novel/create', 'Frontend\NovelController@create')->name('user.novel.create');
         Route::post('mypage/novel', 'Frontend\NovelController@store')->name('user.novel.store');
+
+        //アカウント情報
+        Route::get('mypage/user/edit', 'Frontend\UserController@edit')->name('user.edit');
+        Route::put('mypage/user', 'Frontend\UserController@update')->name('user.update');
+        Route::put('mypage/user/password', 'Frontend\UserController@updatePassword')->name('user.password.update');
 
         //ログアウト
         Route::post('logout', 'Frontend\Auth\LoginController@logout')->name('user.logout');

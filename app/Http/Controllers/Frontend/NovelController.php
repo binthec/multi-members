@@ -8,9 +8,25 @@ use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Auth;
 
 class NovelController extends Controller
 {
+    /**
+     * １ページに表示する数
+     */
+    const PAGINATION = 10;
+
+    /**
+     * 小説一覧
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        $novels = Novel::where('user_id', Auth::guard('user')->user()->id)->paginate(self::PAGINATION);
+        return view('frontend.novel.index', compact('user', 'novels'));
+    }
 
     /**
      * 作品投稿ページ表示
