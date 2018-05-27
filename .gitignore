@@ -20,4 +20,5 @@ yarn-error.log
 /database/seeds/GroupsTableSeeder.php
 /database/seeds/TagsTableSeeder.php
 /database/seeds/NovelsTableSeeder.php
+/database/seeds/SitesTableSeeder.php
 /database/seeds/NovelTagTableSeeder.php

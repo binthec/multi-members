@@ -3,36 +3,40 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Novel;
+use App\Site;
 use Illuminate\Http\Request;
+use Auth;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class NovelController extends Controller
+class SiteController extends Controller
 {
-
     /**
-     * 作品投稿ページ表示
+     * 編集画面表示
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function edit()
     {
-        $novel = new Novel;
-        return view('frontend.novel.edit', compact('novel'));
+        $site = Site::where('user_id', Auth::guard('user')->user()->id)->first();
+
+        if (!$site) {
+            $site = new Site;
+        }
+        return view('frontend.site.edit', compact('site'));
     }
 
     /**
-     * 作品投稿実行
+     * 登録
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function update(Request $request)
     {
 
-        $validator = Validator::make($request->all(), Novel::getValidationRules(true));
+        $validator = Validator::make($request->all(), Site::getValidationRules(true));
         if ($validator->fails()) {
             return redirect()
                 ->back()
@@ -43,12 +47,14 @@ class NovelController extends Controller
         DB::beginTransaction();
 
         try {
-
-            $novel = new Novel;
-            $novel->saveAll($request);
+            $site = Site::where('user_id', Auth::guard('user')->user()->id)->first();
+            if(!$site){
+                $site = new Site;
+            }
+            $site->saveAll($request);
 
             DB::commit();
-            return redirect('/mypage')->with('flashMsg', '登録が完了しました。');
+            return redirect()->back()->with('flashMsg', '登録が完了しました。');
 
         } catch (\Exception $e) {
 
@@ -57,5 +63,6 @@ class NovelController extends Controller
             return redirect()->back()->with('flashErrMsg', '登録に失敗しました。');
 
         }
+
     }
 }

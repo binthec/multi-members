@@ -31,7 +31,7 @@
     <div class="login-box-body">
         <p class="login-box-msg">ログインしてください</p>
 
-        {!! Form::open(['method' => 'POST', 'url' => route('login')]) !!}
+        {!! Form::open(['method' => 'POST', 'url' => route('admin.login')]) !!}
         {{ csrf_field() }}
 
         <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">

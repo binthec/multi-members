@@ -25,6 +25,8 @@ Route::domain(env('FRONTEND_DOMAIN'))->group(function () {
 
     Route::middleware('auth:user')->group(function () {
         Route::get('mypage', 'Frontend\UserController@myPage')->name('user.mypage');
+        Route::get('mypage/site/edit', 'Frontend\SiteController@edit')->name('user.site.edit');
+        Route::put('mypage/site', 'Frontend\SiteController@update')->name('user.site.update');
         Route::get('mypage/novel/create', 'Frontend\NovelController@create')->name('user.novel.create');
         Route::post('mypage/novel', 'Frontend\NovelController@store')->name('user.novel.store');
 
@@ -48,7 +50,7 @@ Route::domain(env('BACKEND_DOMAIN'))->group(function () {
 
         //認証系
         Route::get('login', 'Backend\Auth\LoginController@showLoginForm');
-        Route::post('login', 'Backend\Auth\LoginController@login')->name('login');
+        Route::post('login', 'Backend\Auth\LoginController@login')->name('admin.login');
 //		Route::post('password/email', 'Backend\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 //		Route::get('password/reset', 'Backend\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 //		Route::post('password/reset', 'Backend\Auth\ForgotPasswordController@reset');
