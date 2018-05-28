@@ -12,6 +12,10 @@ Route::domain(env('FRONTEND_DOMAIN'))->group(function () {
         Route::get('login', 'Frontend\Auth\LoginController@showLoginForm')->name('user.showLogin');
         Route::post('login', 'Frontend\Auth\LoginController@login')->name('user.login');
 
+        //新規ユーザ登録
+        Route::get('register', 'Frontend\Auth\RegisterController@showRegistrationForm')->name('user.create');
+        Route::post('register', 'Frontend\Auth\RegisterController@register')->name('user.store');
+
         //ホーム
         Route::get('/', 'Frontend\HomeController@index')->name('home');
         Route::get('/about', 'Frontend\HomeController@about')->name('about');

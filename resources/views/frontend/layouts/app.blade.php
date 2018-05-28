@@ -89,6 +89,13 @@
         </div>
     </nav>
 
+    {{-- フラッシュメッセージの表示 --}}
+    @if (Session::has('flashMsg'))
+        <div class="flash-msg">{{ Session::get('flashMsg') }}</div>
+    @elseif(Session::has('flashErrMsg'))
+        <div class="flash-msg err">{{ Session::get('flashErrMsg') }}</div>
+    @endif
+
     @yield('content')
 
     <footer id="gtco-footer" class="gtco-section" role="contentinfo">
@@ -141,6 +148,7 @@
 <script src="{{ asset('/frontend/js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('/frontend/js/magnific-popup-options.js') }}"></script>
 <script src="{{ asset('/frontend/js/main.js') }}"></script>
+<script src="{{ asset('/frontend/js/custom.js') }}"></script>
 
 {{--<script src="/vendor/moment/moment.js"></script>--}}
 

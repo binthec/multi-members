@@ -1,75 +1,65 @@
-@extends('backend.layouts.app')
+@extends('frontend.layouts.app')
+
+@section('bodyId', 'register')
+@section('gtco_header_title', 'Register')
+@section('gtco_header_subscription', 'ユーザアカウントを作成します。')
 
 @section('content')
 
-    <div class="content-wrapper">
-        <section class="content-header">
-            <h1>ユーザを新規登録</h1>
-            <p class="content-description">
-                <i class="fa fa-info-circle"></i> 管理者としてログイン出来るユーザを新規登録します。
-            </p>
-        </section>
+    @include('frontend.layouts.parts.gtco-header')
 
-        <section class="content">
+    <div class="gtco-section gtco-auth">
+        <div class="gtco-container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6 col-md-offset-3 box">
+                    <h3 class="title"><i class="ti-user"></i>新規登録</h3>
 
-                    {!! Form::open(['method' => 'POST', 'route' => 'user.store', 'class' => 'form-horizontal']) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => 'user.store']) !!}
+                    {{ csrf_field() }}
 
-                    <div class="box box-info">
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <label for="name">お名前 <span class="required-star">＊</span></label>
+                        {!! Form::text('name', old('name'),['class' => 'form-control', 'placeholder' => 'お名前']) !!}
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
+                    </div>
 
-                        <div class="box-header with-border">
-                            <h3 class="box-title"><i class="fa fa-edit"></i> 入力してください </h3>
-                        </div>
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <label for="email">メールアドレス <span class="required-star">＊</span></label>
+                        {!! Form::text('email', old('email'),['class' => 'form-control', 'placeholder' => '有効なメールアドレス']) !!}
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
 
-                        <div class="box-body">
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <label for="password">パスワード <span class="required-star">＊</span></label>
+                        {!! Form::password('password', ['class' => 'form-control', 'placeholder' => '半角英数８文字以上']) !!}
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+				            </span>
+                        @endif
+                    </div>
 
-                            <div class="form-group row{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-sm-3 control-label">ユーザ名 <span class="text-danger">*</span></label>
-                                <div class="col-sm-9">
-                                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'ユーザ名']) !!}
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
+                    <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                        <label for="password_confirmation">パスワード再入力 <span class="required-star">＊</span></label>
+                        {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => '確認のため、再度入力してください']) !!}
+                    </div>
 
-                            <div class="form-group row{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-sm-3 control-label">パスワード <span class="text-danger">*</span></label>
-                                <div class="col-sm-9">
-                                    {!! Form::password('password', ['class' => 'form-control', 'id' => 'password', 'placeholder' => 'パスワード']) !!}
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <label for="password-confirmation" class="col-sm-3 control-label">パスワード再入力 <span class="text-danger">*</span></label>
-                                <div class="col-sm-9">
-                                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirmation', 'placeholder' => 'パスワード']) !!}
-                                </div>
-                            </div>
-
-                        </div><!-- /.box-body -->
-
-                        <div class="box-footer">
-                            <div class="col-sm-9 col-sm-offset-3">
-                                {!! Form::submit('登録する', ['class' => 'btn btn-primary']) !!}
-                            </div>
-                        </div>
-
-                    </div><!-- /.box -->
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block btn-flat" value="登　録">
+                    </div>
 
                     {!! Form::close() !!}
+                </div>
 
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </section>
-
-    </div><!-- ./content-wrapper -->
+            </div>
+        </div>
+    </div><!-- END .gtco-section -->
 @endsection

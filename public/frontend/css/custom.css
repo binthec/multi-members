@@ -186,12 +186,18 @@
 /**
  * ログイン画面
  */
-.gtco-login .col-md-5 {
+.gtco-auth .box {
     border: 1px solid #17B794;
     padding: 0;
 }
-.gtco-login .col-md-5 form {
+.gtco-auth .box form {
     padding: 15px;
+}
+.gtco-auth .make-account {
+    margin-top: 20px;
+}
+.gtco-auth .make-account a:link {
+    text-decoration: underline;
 }
 /**
  *
@@ -212,7 +218,17 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
     border-color: #3dcdbc;
 }
-/* フォーム */
+/**
+ * フォーム
+ */
+/* フロントのフォーム共通 */
+.form-control::placeholder {
+    color: #ccc;
+}
+form label span.required-star{
+    color: red;
+}
+/* マイページ */
 #mypage .form-control {
     height: 42px;
     padding: 10px 15px;
@@ -231,24 +247,35 @@
 #mypage form label.radio-inline {
     line-height: 20px;
 }
-#mypage form label span {
-    font-size: 30px;
-}
 @media screen and (min-width: 768px) {
     #mypage .form-horizontal .control-label {
         padding-top: 0;
     }
 }
-
-#mypage form .btn{
+#mypage form .btn {
     padding: 10px 20px;
 }
-
-#mypage .form-control::placeholder{
-    color: #ccc;
-}
-
-#mypage .well{
+#mypage .well {
     background-color: #f9f9f9;
     border: none;
+}
+/**
+ * フラッシュメッセージ
+ */
+.flash-msg {
+    display: none;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 99999;
+    color: #FFF;
+    background-color: #17B794;
+    text-align: center;
+    padding: 10px;
+    font-size: 1em;
+}
+.err {
+    background-color: red !important;
 }

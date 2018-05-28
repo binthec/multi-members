@@ -21,13 +21,13 @@
 
                     <div class="well">
                         {!! Form::open(['method' => 'PUT', 'route' => ['user.update'], 'files'=> true, 'class' => 'form-horizontal']) !!}
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-3 control-label">ユーザ名 <span class="text-danger">*</span></label>
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-3 control-label">ユーザ名 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                                {{ Form::text('name', $user->name, ['id' => 'name', 'class' => 'form-control']) }}
-                                @if($errors->has('name'))
+                                {{ Form::text('email', $user->email, ['id' => 'email', 'class' => 'form-control']) }}
+                                @if($errors->has('email'))
                                     <span class="help-block">
-                                <strong class="text-danger">{{ $errors->first('name') }}</strong>
+                                <strong class="text-danger">{{ $errors->first('email') }}</strong>
                             </span>
                                 @endif
                             </div>

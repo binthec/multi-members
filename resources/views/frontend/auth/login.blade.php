@@ -1,47 +1,33 @@
 @extends('frontend.layouts.app')
 
 @section('bodyId', 'home')
+@section('gtco_header_title', 'Login')
+@section('gtco_header_subscription', 'ログインして設定やサイトを登録出来ます。')
 
 @section('content')
 
-    <header id="gtco-header" class="gtco-cover gtco-cover-custom gtco-inner" role="banner">
-        <div class="gtco-container">
-            <div class="row">
-                <div class="col-md-12 col-md-offset-0 text-left">
-                    <div class="display-t">
-                        <div class="display-tc">
-                            <div class="row">
-                                <div class="col-md-8 animate-box">
-                                    <h1 class="no-margin">Login</h1>
-                                    <p>ログイン、または新規登録してください</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header><!-- END #gtco-header -->
+    @include('frontend.layouts.parts.gtco-header')
 
-    <div class="gtco-section gtco-login">
+    <div class="gtco-section gtco-auth">
         <div class="gtco-container">
             <div class="row">
-                <div class="col-md-5 col-md-offset-1">
+                <div class="col-md-6 col-md-offset-3 box">
                     <h3 class="title"><i class="ti-user"></i>ログイン</h3>
 
                     {!! Form::open(['method' => 'POST', 'route' => 'user.login']) !!}
                     {{ csrf_field() }}
 
-                    <div class="form-group">
-                        <label for="name">名前</label>
-                        {!! Form::text('name', old('name'),['class' => 'form-control']) !!}
-                        @if ($errors->has('name'))
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <label for="email">メールアドレス</label>
+                        {!! Form::text('email', old('email'),['class' => 'form-control']) !!}
+                        @if ($errors->has('email'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('name') }}</strong>
+                                <strong>{{ $errors->first('email') }}</strong>
                             </span>
                         @endif
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <label for="name">パスワード</label>
                         {!! Form::password('password', ['class' => 'form-control']) !!}
                         @if ($errors->has('password'))
@@ -69,28 +55,13 @@
                     </div>
 
                     {!! Form::close() !!}
+                </div><!-- /.col-md .box -->
+
+                <div class="col-md-6 col-md-offset-3 text-right make-account">
+                    <a href="{{ route('user.create') }}" class=""><i class="icon-user"></i> アカウントを作る</a>
                 </div>
+            </div><!-- /.row -->
 
-                <div class="col-md-5 col-md-offset-1">
-                    <h3 class="title"><i class="ti-user"></i>新規作成</h3>
-
-                    <form action="#">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Email</label>
-                            <input type="text" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn btn-special" value="Send Message">
-                        </div>
-                    </form>
-                </div>
-
-
-            </div>
         </div>
     </div><!-- END .gtco-section -->
 @endsection
