@@ -20,7 +20,7 @@
                         サイト情報を入力してください。
                         @if(!Auth::guard('user')->user()->hasSite())
                             <br>
-                            <small><i class="icon-warning"></i> サイト情報を登録すると、作品を登録出来るようになります。</small>
+                            <small class="text-danger"><i class="icon-warning"></i> サイト情報を登録すると、作品を登録出来るようになります。</small>
                         @endif
                     </h4>
 
@@ -30,7 +30,7 @@
                     <div class="well">
 
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="title" class="col-md-3 control-label">サイト名 <span class="text-danger">*</span></label>
+                            <label for="title" class="col-md-3 control-label">サイト名 <span class="required-star">＊</span></label>
                             <div class="col-md-9">
                                 {{ Form::text('title', $site->title, ['id' => 'title', 'class' => 'form-control', 'placeholder' => 'サイト名']) }}
                                 @if($errors->has('title'))
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                            <label for="url" class="col-md-3 control-label">URL <span class="text-danger">*</span></label>
+                            <label for="url" class="col-md-3 control-label">URL <span class="required-star">＊</span></label>
                             <div class="col-md-9">
                                 {{ Form::text('url', $site->url, ['id' => 'url', 'class' => 'form-control', 'placeholder' => 'url']) }}
                                 @if($errors->has('url'))
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-3 control-label">サイトの説明 <span class="text-danger">*</span></label>
+                            <label for="description" class="col-md-3 control-label">サイトの説明 <span class="required-star">＊</span></label>
                             <div class="col-md-9">
                                 {{ Form::textarea(
                                 'description',
@@ -87,7 +87,7 @@
                         <hr>
 
                         <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                            <label for="status" class="col-sm-3 control-label">公開ステータス <span class="text-danger">*</span></label>
+                            <label for="status" class="col-sm-3 control-label">公開ステータス <span class="required-star">＊</span></label>
                             <div class="col-sm-9">
 
                                 <label class="radio-inline">

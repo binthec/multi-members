@@ -22,7 +22,7 @@
                     <div class="well">
                         {!! Form::open(['method' => 'PUT', 'route' => ['user.update'], 'files'=> true, 'class' => 'form-horizontal']) !!}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-3 control-label">ユーザ名 <span class="text-danger">*</span></label>
+                            <label for="email" class="col-md-3 control-label">ユーザ名 <span class="required-star">＊</span></label>
                             <div class="col-md-9">
                                 {{ Form::text('email', $user->email, ['id' => 'email', 'class' => 'form-control']) }}
                                 @if($errors->has('email'))
@@ -44,7 +44,7 @@
 
                         {!! Form::open(['method' => 'PUT', 'route' => ['user.password.update'], 'files'=> true, 'class' => 'form-horizontal']) !!}
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-3 control-label">パスワード <span class="text-danger">*</span></label>
+                            <label for="password" class="col-md-3 control-label">パスワード <span class="required-star">＊</span></label>
                             <div class="col-md-9">
                                 {{ Form::password('password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => '新しいパスワード']) }}
                                 @if($errors->has('name'))
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirmation" class="col-sm-3 control-label">パスワード再入力 <span class="text-danger">*</span></label>
+                            <label for="password-confirmation" class="col-sm-3 control-label">パスワード再入力 <span class="required-star">＊</span></label>
                             <div class="col-sm-9">
                                 {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirmation', 'placeholder' => 'パスワードをもう一度入力']) !!}
                             </div>

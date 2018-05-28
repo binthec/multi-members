@@ -227,6 +227,7 @@
 }
 form label span.required-star{
     color: red;
+    font-size: 14px;
 }
 /* マイページ */
 #mypage .form-control {

@@ -27,7 +27,7 @@
                     <div class="well">
 
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="title" class="col-md-3 control-label">作品名 <span class="text-danger">*</span></label>
+                            <label for="title" class="col-md-3 control-label">作品名 <span class="required-star">＊</span></label>
                             <div class="col-md-9">
                                 {{ Form::text('title', old('title'), ['id' => 'title', 'class' => 'form-control', 'placeholder' => '作品名']) }}
                                 @if($errors->has('title'))
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-3 control-label">作品の説明 <span class="text-danger">*</span></label>
+                            <label for="description" class="col-md-3 control-label">作品の説明 <span class="required-star">＊</span></label>
                             <div class="col-md-9">
                                 {{ Form::textarea(
                                 'description',
@@ -96,7 +96,7 @@
                         <hr>
 
                         <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                            <label for="status" class="col-sm-3 control-label">公開ステータス <span class="text-danger">*</span></label>
+                            <label for="status" class="col-sm-3 control-label">公開ステータス <span class="required-star">＊</span></label>
                             <div class="col-sm-9">
 
                                 <label class="radio-inline">
