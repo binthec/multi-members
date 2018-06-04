@@ -30,16 +30,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * リレーション。ユーザは小説をたくさん持ってる。１対多。
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function novels()
-    {
-        return $this->hasMany(Novel::class);
-    }
-
-    /**
      * リレーション。ユーザはサイトをたくさん持ってる。
      * ※基本はひとつだけど、拡張性を持たせるために hasMany を設定。
      *

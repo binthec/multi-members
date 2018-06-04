@@ -60,8 +60,8 @@
                 </div>
                 <div class="col-xs-10 text-right menu-1">
                     <ul>
+                        <li><a href="{{ route('home') }}">【 検　索 】</a></li>
                         <li><a href="{{ route('about') }}">このサーチについて</a></li>
-                        <li><a href="">検索</a></li>
 
                         @if(Auth::guard('user')->check())
                             <li class="has-dropdown">
@@ -104,8 +104,8 @@
                 <div class="col-md-4 col-sm-12 gtco-footer-link gtco-footer-paragraph">
                     <h3>Site Map</h3>
                     <ul class="gtco-list-link">
-                        <li><a href="#">このサーチについて</a></li>
                         <li><a href="#">検索</a></li>
+                        <li><a href="#">このサーチについて</a></li>
                         @if(Auth::guard('user')->check())
                             <a href="{{ route('user.site.edit') }}">マイページ</a>
                         @else

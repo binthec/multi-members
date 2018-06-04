@@ -33,7 +33,7 @@ class CreateAllTables extends Migration
 
         Schema::create('novels', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('site_id');
             $table->string('title');
             $table->string('description');
             $table->tinyInteger('has_banner')->default(0);
@@ -51,6 +51,7 @@ class CreateAllTables extends Migration
             $table->string('description');
             $table->tinyInteger('has_banner')->default(0);
             $table->tinyInteger('status');
+            $table->timestamp('checked_at')->nullable()->defalt(null);
             $table->timestamps();
             $table->softDeletes();
         });

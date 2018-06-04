@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TagsTableSeeder::class);
         $this->call(NovelsTableSeeder::class);
         $this->call(NovelTagTableSeeder::class);
+        $this->call(SitesTableSeeder::class);
 	}
 
 }

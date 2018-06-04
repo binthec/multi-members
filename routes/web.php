@@ -25,6 +25,11 @@ Route::domain(env('FRONTEND_DOMAIN'))->group(function () {
          */
         Route::get('/novels/{tag}', 'Frontend\HomeController@novels')->name('novels');
         Route::post('/novels', 'Frontend\HomeController@searchNovels')->name('search');
+
+        /**
+         * サイト詳細情報
+         */
+        Route::get('/site/{site}', 'Frontend\HomeController@site')->name('site');
     });
 
     Route::middleware('auth:user')->group(function () {

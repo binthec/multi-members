@@ -19,7 +19,7 @@ class SiteController extends Controller
      */
     public function edit()
     {
-        $site = Site::where('user_id', Auth::guard('user')->user()->id)->first();
+        $site = Site::where('user_id', Auth::guard('user')->user()->id)->first(); //TODO:いずれユーザに複数サイトを登録出来るようにする
 
         if (!$site) {
             $site = new Site;

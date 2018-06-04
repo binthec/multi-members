@@ -42,6 +42,16 @@ class Site extends Model
     }
 
     /**
+     * リレーション。サイトは小説をたくさん持ってる。１対多。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function novels()
+    {
+        return $this->hasMany(Novel::class);
+    }
+
+    /**
      * バリデーションルールを返すメソッド
      *
      * @return array

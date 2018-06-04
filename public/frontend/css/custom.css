@@ -31,7 +31,8 @@
 .gtco-section {
     padding: 2em 0;
 }
-.title {
+.title,
+.gtco-sites .site .site-title {
     height: 40px;
     line-height: 40px;
     margin-bottom: 0;
@@ -141,20 +142,62 @@
 }
 /**
  *
- * 検索結果　サイト
+ * 検索結果　サイト一覧：マイページ共通
  *
  */
+
+.gtco-sites .site-lists {
+    text-align: center;
+}
 .gtco-sites .site {
     border: 1px solid #17B794;
+    margin-bottom: 15px;
+    text-align: left;
 }
-.gtco-sites .site .banner {
+.gtco-sites .site .site-title a{
+    color: #000;
+    padding-left: 15px;
+}
+/*.gtco-sites .site .title a i{*/
+    /*font-size: 16px !important;*/
+    /*color: #000 !important;*/
+/*}*/
+.gtco-sites .site .site-title a:hover {
+    text-decoration: underline;
+}
+.gtco-sites .site .top{
     padding: 15px;
 }
-.gtco-sites .site .banner a.first-novel {
-    /*height: 40px;*/
+.gtco-sites .site .top .banner,
+.gtco-sites .site .top .tags {
+    float: left;
+}
+.gtco-sites .site .top .tags {
+    font-size: 12px;
+    margin-left: 10px;
+    width: 73%;
+}
+.gtco-sites .site .top .tags a:link {
+    text-decoration: underline;
+}
+.gtco-sites .site .bottom{
+    padding: 0 15px 10px;
+}
+.gtco-sites .site .bottom p.description {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1.4em;
+}
+.gtco-sites .site .bottom hr {
+    margin: 15px 0 5px;
+    border-top: 1px solid #17B794;
+}
+.gtco-sites .site .bottom a.first,
+.gtco-sites .site .bottom a.others{
+    margin-top: 8px;
     line-height: 20px;
     border: 1px solid #17B794;
-    padding: 10px;
+    padding: 3px 10px;
     border-radius: 5px;
     font-size: 12px;
     text-align: center;
@@ -169,19 +212,11 @@
     background: linear-gradient(to right, #3dcdbc 0%, #33a1bd 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3dcdbc', endColorstr='#33a1bd', GradientType=1);
 }
-.gtco-sites .site .banner .first-novel i {
-    font-size: 12px;
-    font-weight: bold;
+.gtco-sites .pagination:first-of-type {
+    margin: 0 auto 15px;
 }
-.gtco-sites .site p.title {
-    color: #000;
-    padding-left: 15px;
-}
-.gtco-sites .site p.description {
-    padding: 15px;
-    margin-bottom: 0;
-    font-size: 14px;
-    line-height: 1.4em;
+.gtco-sites .pagination:last-of-type {
+    margin: 10px auto 0;
 }
 /**
  * ログイン画面
@@ -225,7 +260,7 @@
 .form-control::placeholder {
     color: #ccc;
 }
-form label span.required-star{
+form label span.required-star {
     color: red;
     font-size: 14px;
 }

@@ -24,7 +24,9 @@ class NovelController extends Controller
      */
     public function index()
     {
-        $novels = Novel::where('user_id', Auth::guard('user')->user()->id)->paginate(self::PAGINATION);
+        $siteId = Auth::guard('user')->user()->sites->first()->id; //TODO:いずれユーザに複数サイトを登録出来るようにする
+
+        $novels = Novel::where('site_id', $siteId)->paginate(self::PAGINATION);
         return view('frontend.novel.index', compact('user', 'novels'));
     }
 
